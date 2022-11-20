@@ -1,12 +1,13 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {detail} from "../Types";
 import {useNavigate} from "react-router-dom";
 import {Col2} from "../Ui Components/Cols";
 import H3 from "../Ui Components/H3";
+import Button from "../Ui Components/Button";
 
 const Resume = () => {
     const navigate = useNavigate()
-    const [details, sedivetails] = useState<detail>({
+    const [details, setDetails] = useState<detail>({
         basicDetail: {
             firstName: "",
             address: "",
@@ -23,12 +24,14 @@ const Resume = () => {
         if (!tempDetails) {
             navigate("/")
         } else {
-            sedivetails(() => JSON.parse(tempDetails))
+            setDetails(() => JSON.parse(tempDetails))
         }
     }, [navigate])
-
+    const aHandler = () => {
+        window.print()
+    }
     return (
-        <div className="container " id='DivIdToPrint'>
+        <div className="container mx-30" id='DivIdToPrint'>
             <div className="grid grid-cols-1 bg-white shadow-2xl">
                 <div className="p-3 mx-10">
                     <div className="p-5">
@@ -83,7 +86,9 @@ const Resume = () => {
                         </ul>
                     </div>
                 </div>
+                <Button name="Print" buttonClickHandler={aHandler} buttonType={"button"}/>
             </div>
+
         </div>
     )
 }
