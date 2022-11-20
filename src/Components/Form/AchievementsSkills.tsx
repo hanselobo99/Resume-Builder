@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {Col1, Col2, Col3} from "../Ui Components/Cols";
 import Input from "./Input";
 import Button from "../Ui Components/Button";
@@ -21,6 +21,9 @@ const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
         skill2: "",
         skill3: ""
     })
+    useEffect(()=>{
+        setAchievementsSkills(()=>details.achievementsSkills)
+    },[details.achievementsSkills])
     const achievementOneHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setAchievementsSkills((prevState) => {
             return {...prevState, achievement1: event.target.value}
@@ -118,6 +121,7 @@ const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
         }
 
     }
+    console.log(achievementsSkills)
     return (
         <Padding4>
             <h5 className="text-4xl font-serif font-normal ">Achievements and Skills</h5>
