@@ -4,6 +4,7 @@ import Input from "./Input";
 import Button from "../Ui Components/Button";
 import {achievementsSkills, detailsProps} from "../Types";
 import {viewType} from "../Enum";
+import Padding4 from "../Ui Components/Padding4";
 
 const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
     const [achievementsSkills, setAchievementsSkills] = useState<achievementsSkills>({
@@ -65,16 +66,6 @@ const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
                 return {...prevState, achievement1: ""}
             })
         }
-        if (achievementsSkills.achievement1.length === 0) {
-            setAchievementsSkillsErrors((prevState) => {
-                return {...prevState, achievement1: "Achievement 1 Cannot be empty"}
-            })
-            errors = true
-        } else {
-            setAchievementsSkillsErrors((prevState) => {
-                return {...prevState, achievement1: ""}
-            })
-        }
         if (achievementsSkills.achievement2.length === 0) {
             setAchievementsSkillsErrors((prevState) => {
                 return {...prevState, achievement2: "Achievement 2 Cannot be empty"}
@@ -118,13 +109,17 @@ const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
         if (errors) {
             return
         } else {
+            setDetails((prevState) => {
+                return {...prevState, achievementsSkills: achievementsSkills}
+            })
+            let dets = JSON.stringify({...details, achievementsSkills: achievementsSkills})
+            localStorage.setItem("details", dets)
             change(viewType.Resume)
         }
+
     }
-
-
     return (
-        <div className="p-4">
+        <Padding4>
             <h5 className="text-4xl font-serif font-normal ">Achievements and Skills</h5>
             <div className="p-3">
 
@@ -150,10 +145,11 @@ const AchievementsSkills = ({details, setDetails, change}: detailsProps) => {
                 </Col3>
                 <Col2>
                     <Button name="Previous" buttonType="button" buttonClickHandler={previousButtonHandler}/>
-                    <Button name="Create Resume" buttonType="button" btnColor="primary" buttonClickHandler={nextButtonHandler}/>
+                    <Button name="Create Resume" buttonType="button" btnColor="primary"
+                            buttonClickHandler={nextButtonHandler}/>
                 </Col2>
             </div>
-        </div>
+        </Padding4>
 
     )
 }

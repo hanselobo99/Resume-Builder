@@ -11,7 +11,7 @@ export type basicDetail = {
 export type inputProps = {
     name?: string
     placeHolder?: string
-    value?: string
+    value?: string | undefined
     inputType?: string
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     error?: string
@@ -35,13 +35,14 @@ export type colProps = {
 }
 
 export type educationalQualification = {
-    id: number
     courseName: string
     specialization: string
     university: string
     yearOfCompletion: string
     percentage: string
 }
+
+
 export type educationalQualifications = educationalQualification[]
 
 export type achievementsSkills = {
@@ -66,5 +67,5 @@ export type educationalDetailsProps = {
     setEducationalQualification: React.Dispatch<React.SetStateAction<educationalQualifications>>
 }
 export type resumeProps = {
-    details: detail
+    details?: detail
 }

@@ -3,6 +3,7 @@ import {Col2} from "../Ui Components/Cols";
 import Button from "../Ui Components/Button";
 import {detailsProps} from "../Types";
 import {viewType} from "../Enum";
+import Padding4 from "../Ui Components/Padding4";
 
 const CareerObjective = ({details, setDetails, change}: detailsProps) => {
     const [err, setErr] = useState(false)
@@ -41,7 +42,7 @@ const CareerObjective = ({details, setDetails, change}: detailsProps) => {
 
     }
     return (
-        <div className="p-4">
+        <Padding4>
             <h5 className="text-4xl font-serif font-normal ">Career Objective</h5>
             <div className="p-3">
                  <textarea
@@ -58,7 +59,7 @@ const CareerObjective = ({details, setDetails, change}: detailsProps) => {
                     <Button name="Next" buttonType="button" buttonClickHandler={nextButtonHandler}/>
                 </Col2>
             </div>
-        </div>
+        </Padding4>
 
     )
 }

@@ -4,6 +4,7 @@ import Input from "./Input";
 import Button from "../Ui Components/Button";
 import {basicDetail, detailsProps} from "../Types"
 import {viewType} from "../Enum";
+import Padding4 from "../Ui Components/Padding4";
 
 const BasicDetails = ({details, setDetails, change}: detailsProps) => {
     const [basicDetails, setBasicDetails] = useState<basicDetail>({
@@ -134,7 +135,7 @@ const BasicDetails = ({details, setDetails, change}: detailsProps) => {
 
 
     return (
-        <div className="p-4">
+        <Padding4>
             <h5 className="text-4xl font-serif font-normal ">Basic Details</h5>
             <div className="p-3">
                 <Col2>
@@ -157,7 +158,7 @@ const BasicDetails = ({details, setDetails, change}: detailsProps) => {
                     <Button name="Next" buttonType="button" buttonClickHandler={buttonHandler}/>
                 </Col1>
             </div>
-        </div>
+        </Padding4>
 
     )
 }
