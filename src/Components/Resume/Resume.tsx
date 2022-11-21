@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 import {Col2} from "../Ui Components/Cols";
 import H3 from "../Ui Components/H3";
 import Button from "../Ui Components/Button";
-import ReactDOM from "react-dom";
 
 const Resume = () => {
     const navigate = useNavigate()
