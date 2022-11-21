@@ -6,6 +6,8 @@ import {viewType} from "./Enum";
 import EducationalQualifications from "./Form/EducationalQualifications";
 import AchievementsSkills from "./Form/AchievementsSkills";
 import {useNavigate} from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 const Main = () => {
@@ -25,14 +27,14 @@ const Main = () => {
 
     const [view, setView] = useState(viewType.BasicDetails)
 
-    useEffect(()=>{
+    useEffect(() => {
         let tempDetails = localStorage.getItem("details")
-        let details:detail
+        let details: detail
         if (tempDetails) {
             details = JSON.parse(tempDetails)
-            setDetails(()=>details)
+            setDetails(() => details)
         }
-    },[])
+    }, [])
 
 
     const goToView = (title: number) => {
@@ -47,28 +49,32 @@ const Main = () => {
     }
 
     return (
-        <main>
-            <div className="container">
-                <div className="grid grid-cols-1 bg-white shadow-2xl">
-                    <h4 className="text-5xl font-serif font-medium text-center py-6">Details</h4>
-                    <hr/>
-                    <form onSubmit={formSubmitHandler}>
-                        {view === viewType.BasicDetails &&
-                            <BasicDetails details={details} setDetails={setDetails}
-                                          change={goToView}/>}
-                        {view === viewType.CareerObjective &&
-                            <CareerObjective details={details} setDetails={setDetails}
-                                             change={goToView}/>}
-                        {view === viewType.EducationalQualifications &&
-                            <EducationalQualifications details={details} setDetails={setDetails}
-                                                       change={goToView}/>}
-                        {view === viewType.AchievementsSkills &&
-                            <AchievementsSkills details={details} setDetails={setDetails}
-                                                change={goToView}/>}
-                    </form>
+        <>
+            <Header/>
+            <main>
+                <div className="container">
+                    <div className="grid grid-cols-1 bg-white shadow-2xl">
+                        <h4 className="text-5xl font-serif font-medium text-center py-6">Details</h4>
+                        <hr/>
+                        <form onSubmit={formSubmitHandler}>
+                            {view === viewType.BasicDetails &&
+                                <BasicDetails details={details} setDetails={setDetails}
+                                              change={goToView}/>}
+                            {view === viewType.CareerObjective &&
+                                <CareerObjective details={details} setDetails={setDetails}
+                                                 change={goToView}/>}
+                            {view === viewType.EducationalQualifications &&
+                                <EducationalQualifications details={details} setDetails={setDetails}
+                                                           change={goToView}/>}
+                            {view === viewType.AchievementsSkills &&
+                                <AchievementsSkills details={details} setDetails={setDetails}
+                                                    change={goToView}/>}
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer/>
+        </>
     )
 }
 export default Main

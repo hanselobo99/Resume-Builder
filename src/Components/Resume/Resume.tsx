@@ -21,9 +21,8 @@ const Resume = () => {
         achievementsSkills: {achievement1: "", achievement2: "", skill1: "", skill2: "", skill3: ""}
     })
     const aHandler = () => {
-        const printPortal = document.getElementById('printRoot')
-        if(printPortal)
-            console.log(ReactDOM.createPortal(<Button name="Print"  buttonType={"button"}/>, printPortal))
+      window.print()
+
     }
     useEffect(() => {
         let tempDetails = localStorage.getItem("details") as string
@@ -31,7 +30,6 @@ const Resume = () => {
             navigate("/")
         } else {
             setDetails(() => JSON.parse(tempDetails))
-            aHandler()
 
         }
     }, [navigate])
@@ -93,9 +91,8 @@ const Resume = () => {
                             </ul>
                         </div>
                     </div>
-
+                    <Button name={"Print"} buttonClickHandler={aHandler} buttonType={"button"}/>
                 </div>
-
             </div>
         </div>
     )
