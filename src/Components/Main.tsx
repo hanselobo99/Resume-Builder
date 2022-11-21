@@ -44,7 +44,6 @@ const Main = () => {
     }
     const formSubmitHandler = (event: ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-
     }
 
     return (

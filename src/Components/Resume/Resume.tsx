@@ -1,9 +1,10 @@
-import React, { useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {detail} from "../Types";
 import {useNavigate} from "react-router-dom";
 import {Col2} from "../Ui Components/Cols";
 import H3 from "../Ui Components/H3";
 import Button from "../Ui Components/Button";
+import ReactDOM from "react-dom";
 
 const Resume = () => {
     const navigate = useNavigate()
@@ -19,76 +20,83 @@ const Resume = () => {
         educationalQualifications: [],
         achievementsSkills: {achievement1: "", achievement2: "", skill1: "", skill2: "", skill3: ""}
     })
+    const aHandler = () => {
+        const printPortal = document.getElementById('printRoot')
+        if(printPortal)
+            console.log(ReactDOM.createPortal(<Button name="Print"  buttonType={"button"}/>, printPortal))
+    }
     useEffect(() => {
         let tempDetails = localStorage.getItem("details") as string
         if (!tempDetails) {
             navigate("/")
         } else {
             setDetails(() => JSON.parse(tempDetails))
+            aHandler()
+
         }
     }, [navigate])
-    const aHandler = () => {
-        window.print()
-    }
+
     return (
-        <div className="container mx-30" id='DivIdToPrint'>
-            <div className="grid grid-cols-1 bg-white shadow-2xl">
-                <div className="p-3 mx-10">
-                    <div className="p-5">
-                        <h1 className="text-4xl">{details.basicDetail.firstName} {details.basicDetail.lastName}</h1>
-                        <h3>{details.basicDetail.address}</h3>
-                        <h3>Phone: {details.basicDetail.contact}</h3>
-                        <h3>Email: {details.basicDetail.email}</h3>
-                    </div>
-                    <hr/>
-                    <div className="p-5">
-                        <H3>Career Objective</H3>
-                        <p>{details.careerObjective}</p>
-                    </div>
-                    <div className="p-5">
-                        <H3>Achievements</H3>
-                        <ul className="list-disc pl-5 leading-10">
-                            <li>{details.achievementsSkills.achievement1}</li>
-                            <li>{details.achievementsSkills.achievement2}</li>
-                        </ul>
+        <div className="googoose-wrapper">
+            <div className="container mx-30" id='DivIdToPrint'>
+                <div className="grid grid-cols-1 bg-white shadow-2xl">
+                    <div className="p-3 mx-10">
+                        <div className="p-5">
+                            <h1 className="text-4xl">{details.basicDetail.firstName} {details.basicDetail.lastName}</h1>
+                            <h3>{details.basicDetail.address}</h3>
+                            <h3>Phone: {details.basicDetail.contact}</h3>
+                            <h3>Email: {details.basicDetail.email}</h3>
+                        </div>
+                        <hr/>
+                        <div className="p-5">
+                            <H3>Career Objective</H3>
+                            <p>{details.careerObjective}</p>
+                        </div>
+                        <div className="p-5">
+                            <H3>Achievements</H3>
+                            <ul className="list-disc pl-5 leading-10">
+                                <li>{details.achievementsSkills.achievement1}</li>
+                                <li>{details.achievementsSkills.achievement2}</li>
+                            </ul>
 
 
-                    </div>
-                    <div className="p-5">
-                        <H3>Educational Qualification</H3>
+                        </div>
+                        <div className="p-5">
+                            <H3>Educational Qualification</H3>
 
-                        {details.educationalQualifications.map((data, index) => {
-                            return (
-                                <Col2 key={index}>
+                            {details.educationalQualifications.map((data, index) => {
+                                return (
+                                    <Col2 key={index}>
 
-                                    <div>Course</div>
-                                    <div> {data.courseName}</div>
-                                    <div>Specialization</div>
-                                    <div> {data.specialization}</div>
-                                    <div>University</div>
-                                    <div> {data.university}</div>
-                                    <div>Year of Completion</div>
-                                    <div> {data.yearOfCompletion}</div>
-                                    <div>CGPA/SGPA</div>
-                                    <div> {data.percentage}</div>
-                                    <hr/>
-                                </Col2>
-                            )
-                        })}
+                                        <div>Course</div>
+                                        <div> {data.courseName}</div>
+                                        <div>Specialization</div>
+                                        <div> {data.specialization}</div>
+                                        <div>University</div>
+                                        <div> {data.university}</div>
+                                        <div>Year of Completion</div>
+                                        <div> {data.yearOfCompletion}</div>
+                                        <div>CGPA/SGPA</div>
+                                        <div> {data.percentage}</div>
+                                        <hr/>
+                                    </Col2>
+                                )
+                            })}
 
+                        </div>
+                        <div className="p-5">
+                            <H3>Skills</H3>
+                            <ul className="list-disc pl-5 leading-10">
+                                <li>{details.achievementsSkills.skill1}</li>
+                                <li>{details.achievementsSkills.skill2}</li>
+                                <li>{details.achievementsSkills.skill3}</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="p-5">
-                        <H3>Skills</H3>
-                        <ul className="list-disc pl-5 leading-10">
-                            <li>{details.achievementsSkills.skill1}</li>
-                            <li>{details.achievementsSkills.skill2}</li>
-                            <li>{details.achievementsSkills.skill3}</li>
-                        </ul>
-                    </div>
+
                 </div>
-                <Button name="Print" buttonClickHandler={aHandler} buttonType={"button"}/>
-            </div>
 
+            </div>
         </div>
     )
 }

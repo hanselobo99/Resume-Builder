@@ -19,7 +19,7 @@ export type inputProps = {
 
 export type buttonProps = {
     name: string
-    buttonClickHandler: (event: React.MouseEvent<HTMLElement>) => void
+    buttonClickHandler?: (event: React.MouseEvent<HTMLElement>) => void
     buttonType: "button" | "submit" | "reset" | undefined
     btnColor?: string
 }
